@@ -12,8 +12,8 @@ export const api = axios.create({
 
 api.interceptors.response.use(response => {
   return response;
-}, (error: AxiosError) => {
-  if (error.response?.status === 401) {
+}, (error: any) => {
+  if (error.response.status === 401) {
     if (error.response.data.code === 'token.expired') {
       cookies = parseCookies();
 
@@ -27,7 +27,6 @@ api.interceptors.response.use(response => {
         setCookie(undefined, 'nextauth.token', token, {
           maxAge: 60 * 60 * 24 * 30, // 30 days
           path: '/', // Qualquer endereço da aplicação vai ter acesso 
-  
         });
 
         setCookie(undefined, 'nextauth.refreshToken', response.data.refreshToken, {

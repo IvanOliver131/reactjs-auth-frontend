@@ -35,6 +35,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
   
     if (token) {
       api.get('/me').then(response => {
+        console.log(response.data)
         const { email, permissions, roles } = response.data;
 
         setUser({ email, permissions, roles });
@@ -58,8 +59,8 @@ export function AuthProvider({ children }: AuthProviderProps) {
       setCookie(undefined, 'nextauth.token', token, {
         maxAge: 60 * 60 * 24 * 30, // 30 days
         path: '/', // Qualquer endereço da aplicação vai ter acesso 
-
       });
+
       setCookie(undefined, 'nextauth.refreshToken', refreshToken, {
         maxAge: 60 * 60 * 24 * 30, // 30 days
         path: '/', // Qualquer endereço da aplicação vai ter acesso 
