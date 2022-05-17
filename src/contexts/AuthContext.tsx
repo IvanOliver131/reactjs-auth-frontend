@@ -14,7 +14,7 @@ type AuthProviderProps = {
   children: ReactNode;
 }
 
-const AuthContext = createContext({} as AuthContextData);
+export const AuthContext = createContext({} as AuthContextData);
 
 export function AuthProvider({ children }: AuthProviderProps) {
   const isAuthenticated = false;
@@ -27,5 +27,5 @@ export function AuthProvider({ children }: AuthProviderProps) {
     <AuthContext.Provider value={{ signIn, isAuthenticated }}>
       {children}
     </AuthContext.Provider>
-  )
+  );
 }
