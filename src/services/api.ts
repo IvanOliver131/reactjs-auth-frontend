@@ -40,7 +40,7 @@ api.interceptors.response.use(response => {
             path: '/', // Qualquer endereço da aplicação vai ter acesso 
           });
   
-          api.defaults.headers['Authorization'] = `Bearer ${token}`;
+          api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
         
           failedRequestsQueue.forEach(request => request.onSuccess(token));
           failedRequestsQueue = [];
