@@ -3,6 +3,7 @@ import Router from 'next/router';
 import { setCookie, parseCookies } from 'nookies';
 import { api } from "../services/api";
 
+// Types
 type User = {
   email: string;
   permissions: string[];
