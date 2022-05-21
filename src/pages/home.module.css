@@ -6,3 +6,19 @@
   align-items: center;
   gap: 10px;
 }
+
+.loginButton {
+  width: 160px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  padding: 5px;
+  color: white;
+  background: rgb(130, 130, 241);
+}
+
+.loginButton:hover {
+  transition: 2s;
+  filter: brightness(0.8);
+  cursor: pointer;
+}

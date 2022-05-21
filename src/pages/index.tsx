@@ -21,9 +21,10 @@ export default function Home() {
 
   return (
     <form onSubmit={handleSubmit} className={styles.container}>
+      <h2>LogIN...</h2>
       <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
       <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
-      <button type="submit">Entrar</button> 
+      <button type="submit" className={styles.loginButton}>Entrar</button> 
     </form>
   )
 }
