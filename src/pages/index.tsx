@@ -1,6 +1,7 @@
 import { GetServerSideProps } from "next";
 import { parseCookies } from "nookies";
 import { FormEvent, useContext, useState } from "react";
+import { withSSRGuest } from "../../utils/withSSRGuest";
 import { AuthContext } from '../contexts/AuthContext';
 import styles from './home.module.css';
 
@@ -31,21 +32,10 @@ export default function Home() {
   )
 }
 
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  // Por ser do lado do servidor eu possuo o contexto
-  const cookies = parseCookies(ctx);
-  
-  // Se eu possuo a autenticação eu redireciono diretamente para a tela do dashboard
-  if (cookies['nextauth.token']) {
-    return {
-      redirect: {
-        destination: '/dashboard',
-        permanent: false,
-      }
+export const getServerSideProps = withSSRGuest(async (ctx) => {
+  return {
+    props: {
+      
     }
   }
-
-  return {
-    props: {}
-  }
-}
+});
