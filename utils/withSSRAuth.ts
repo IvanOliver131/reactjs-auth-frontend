@@ -1,5 +1,5 @@
 import { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from "next";
-import { parseCookies } from "nookies";
+import { destroyCookie, parseCookies } from "nookies";
 
 // P = ao tipo recebido
 export function withSSRAuth<P>(fn: GetServerSideProps<P>) {
@@ -17,8 +17,20 @@ export function withSSRAuth<P>(fn: GetServerSideProps<P>) {
       }
     }
 
-    // Caso a funçao de cima nao funcione vamos executar
-    // a função que recebemos com o contexto como paramêtro
-    return await fn(ctx);
+    try {
+      // Caso a funçao de cima nao funcione vamos executar
+      // a função que recebemos com o contexto como paramêtro
+      return await fn(ctx);
+    } catch (error) {
+      destroyCookie(ctx, 'nextauth.token');
+      destroyCookie(ctx, 'nextauth.refreshToken');
+  
+      return {
+        redirect: {
+          destination: '/',
+          permanent: false,
+        }
+      }
+    }   
   }
 }
