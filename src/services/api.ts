@@ -39,12 +39,12 @@ export function setupAPIClient(ctx = undefined) {
             
             setCookie(ctx, 'nextauth.token', token, {
               maxAge: 60 * 60 * 24 * 30, // 30 days
-              path: '/', // Qualquer endereço da aplicação vai ter acesso 
+              path: '/', // Qualquer endereço da aplicação vai ter acesso ao cookie setado
             });
     
             setCookie(ctx, 'nextauth.refreshToken', response.data.refreshToken, {
               maxAge: 60 * 60 * 24 * 30, // 30 days
-              path: '/', // Qualquer endereço da aplicação vai ter acesso 
+              path: '/', // Qualquer endereço da aplicação vai ter acesso ao cookie setado
             });
     
             api.defaults.headers.common['Authorization'] = `Bearer ${token}`;
