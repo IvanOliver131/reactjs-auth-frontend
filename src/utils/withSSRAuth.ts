@@ -1,6 +1,6 @@
 import { GetServerSideProps, GetServerSidePropsContext, GetServerSidePropsResult } from "next";
 import { destroyCookie, parseCookies } from "nookies";
-import { AuthTokenError } from "../src/services/errors/AuthTokenError";
+import { AuthTokenError } from "../services/errors/AuthTokenError";
 
 // P = ao tipo recebido
 export function withSSRAuth<P>(fn: GetServerSideProps<P>) {

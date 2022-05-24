@@ -1,5 +1,5 @@
 import { FormEvent, useContext, useState } from "react";
-import { withSSRGuest } from "../../utils/withSSRGuest";
+import { withSSRGuest } from "../utils/withSSRGuest";
 import { AuthContext } from '../contexts/AuthContext';
 import styles from './home.module.css';
 
@@ -23,8 +23,8 @@ export default function Home() {
   return (
     <form onSubmit={handleSubmit} className={styles.container}>
       <h2>LogIN...</h2>
-      <input type="email" value={email} onChange={e => setEmail(e.target.value)} />
-      <input type="password" value={password} onChange={e => setPassword(e.target.value)} />
+      <input type="email" className={styles.inputStyle} placeholder="E-mail" value={email} onChange={e => setEmail(e.target.value)} />
+      <input type="password" className={styles.inputStyle} placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} />
       <button type="submit" className={styles.loginButton}>Entrar</button> 
     </form>
   )

@@ -22,3 +22,9 @@
   filter: brightness(0.8);
   cursor: pointer;
 }
+
+.inputStyle {
+  border: 0.5px solid rgb(209, 209, 254);
+  padding: 5px;
+  border-radius: 5px;
+}
