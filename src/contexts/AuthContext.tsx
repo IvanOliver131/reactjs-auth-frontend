@@ -50,10 +50,13 @@ export function AuthProvider({ children }: AuthProviderProps) {
     
     authChannel.onmessage = (message) => {
       switch (message.data) {
+        // Caso ele deslogue deslogamos todas as paginas
         case 'signOut':
+          // Enviamos o valor false para não entrar em looping
           signOut(false);
           break;
         
+        // Caso ele logue mandamos ele pra pagina de dashboard
         case 'signIn':
           window.location.replace("http://localhost:3000/dashboard");
           break;
