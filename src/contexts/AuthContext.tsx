@@ -30,13 +30,13 @@ export const AuthContext = createContext({} as AuthContextData);
 
 let authChannel: BroadcastChannel;
 
-export function signOut() {
+export function signOut(broadcast: boolean = true) {
   destroyCookie(undefined, 'nextauth.token')
   destroyCookie(undefined, 'nextauth.refreshToken')
 
-  authChannel.postMessage('signOut');
+  if (broadcast) authChannel.postMessage('signOut'); 
 
-  // redireciona o usuário de volta para home
+  // Redireciona o usuário de volta para home
   Router.push('/');
 }
 
@@ -46,21 +46,23 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
   useEffect(() => {
     // Precisa ser utilizado somente do lado do cliente
-    authChannel = new BroadcastChannel('auth')
+    authChannel = new BroadcastChannel('auth');
     
     authChannel.onmessage = (message) => {
       switch (message.data) {
         case 'signOut':
-          signOut();
+          signOut(false);
           break;
-        // case 'signIn':
-        //   Router.push('/dashboard');
-        //   break;
+        
+        case 'signIn':
+          window.location.replace("http://localhost:3000/dashboard");
+          break;
+
         default:
           break;
       }
     }
-  }, [])
+  }, []);
 
   useEffect(() => {
     const { 'nextauth.token': token } = parseCookies();
@@ -111,7 +113,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
 
       Router.push('/dashboard');
 
-      // authChannel.postMessage('signIn');
+      authChannel.postMessage('signIn');
     } catch (error) {
       alert('error');
     }   

@@ -46,7 +46,7 @@ export function withSSRAuth<P>(fn: GetServerSideProps<P>, options?: WithSSRAuthO
         }
       }
     }
-
+    
     try {
       // Caso a funçao de cima nao funcione vamos executar
       // a função que recebemos com o contexto como paramêtro
