@@ -1,6 +1,7 @@
 import { FormEvent, useContext, useState } from "react";
 import { withSSRGuest } from "../utils/withSSRGuest";
 import { AuthContext } from '../contexts/AuthContext';
+
 import styles from './home.module.css';
 
 export default function Home() {

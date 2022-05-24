@@ -18,7 +18,7 @@
 }
 
 .loginButton:hover {
-  transition: 2s;
+  transition: 0.5s;
   filter: brightness(0.8);
   cursor: pointer;
 }
