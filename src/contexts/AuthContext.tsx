@@ -31,8 +31,8 @@ export const AuthContext = createContext({} as AuthContextData);
 let authChannel: BroadcastChannel;
 
 export function signOut(broadcast: boolean = true) {
-  destroyCookie(undefined, 'nextauth.token')
-  destroyCookie(undefined, 'nextauth.refreshToken')
+  destroyCookie(undefined, 'nextauth.token');
+  destroyCookie(undefined, 'nextauth.refreshToken');
 
   if (broadcast) authChannel.postMessage('signOut'); 
 
@@ -52,7 +52,7 @@ export function AuthProvider({ children }: AuthProviderProps) {
       switch (message.data) {
         // Caso ele deslogue deslogamos todas as paginas
         case 'signOut':
-          // Enviamos o valor false para não entrar em looping
+          // Enviamos o valor false para não entrar em looping e avisar que não quer fazer o broadcast novamente
           signOut(false);
           break;
         
