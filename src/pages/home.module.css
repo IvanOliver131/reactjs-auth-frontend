@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   gap: 10px;
+  min-width: 280px;
 }
 
 .loginButton {
